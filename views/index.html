@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/attaches@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/nested-list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/underline@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+</head>
+<body>
+<div id="editorjs"></div>
+<script>
+    const config = {
+        onChange: async (ev) => {
+            const gg = await ev.saver.save()
+    console.log(gg, 'on change')
+  },
+  tools: {
+    image: {
+      class: ImageTool,
+      
+    },
+    table: {
+      class: Table,
+      inlineToolbar: true,
+      config: {
+        rows: 2,
+        cols: 3,
+      },
+    },
+    quote: Quote,
+    embed: Embed,
+    checklist: {
+      class: Checklist,
+      inlineToolbar: true,
+    },
+    inlineCode: {
+      class: InlineCode,
+    },
+    header: Header,
+    code: CodeTool,
+    paragraph: {
+      class: Paragraph,
+      inlineToolbar: true,
+    },
+    Marker: {
+      class: Marker,
+    },
+    attaches: {
+      class: AttachesTool,
+      config: {
+        endpoint: "http://localhost:8008/uploadFile",
+      },
+    },
+    underline: Underline,
+    linkTool: {
+      class: LinkTool,
+      config: {
+        endpoint: "http://localhost:8008/fetchUrl",
+      },
+    },
+    list: {
+      class: NestedList,
+      inlineToolbar: true,
+    },
+  },
+};
+    const editor = new EditorJS(config);
+    
+</script>
+</body>
+</html>
