@@ -1,4 +1,4 @@
-export default class EJS {
+export default class EditorJsToHtml {
     private readonly config;
     private readonly parsers;
     constructor(config?: {}, customs?: {}, embeds?: {});

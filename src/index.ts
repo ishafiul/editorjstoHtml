@@ -2,7 +2,7 @@
 import defaultParsers from "./parsers";
 import defaultConfig from "./config";
 import {mergeDeep, embedMarkups} from "./utitlities";
-export default class EJS {
+export default class EditorJsToHtml {
     private readonly config: any;
     private readonly parsers: any;
     constructor(config = {}, customs = {}, embeds = {}) {

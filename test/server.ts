@@ -1,9 +1,9 @@
 import express from "express";
 import {createServer} from "http";
-import EJS from "../dist/cjs";
+import EditorJsToHtml from "../dist/cjs";
 
 const app = express()
-const ejs = new EJS();
+const ejs = new EditorJsToHtml();
 const server = createServer(app);
 const port = process.env.PORT || 3000;
 app.get('/', (req, res) => res.sendFile('index.html', {root: app.get('views')}))

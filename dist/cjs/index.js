@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const parsers_1 = __importDefault(require("./parsers"));
 const config_1 = __importDefault(require("./config"));
 const utitlities_1 = require("./utitlities");
-class EJS {
+class EditorJsToHtml {
     constructor(config = {}, customs = {}, embeds = {}) {
         this.config = (0, utitlities_1.mergeDeep)(config_1.default, config);
         this.config.embedMarkups = Object.assign(utitlities_1.embedMarkups, embeds);
@@ -50,5 +50,5 @@ class EJS {
         }
     }
 }
-exports.default = EJS;
+exports.default = EditorJsToHtml;
 //# sourceMappingURL=index.js.map
