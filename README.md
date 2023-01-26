@@ -11,7 +11,7 @@ Its a rework on top of [editorjs-parser](https://github.com/miadabdi/editorjs-pa
 Use the package manager [npm](https://www.npmjs.com/) to install editorjs-parser.
 
 ```bash
-npm install --save editorjs-parser
+npm i @ishafiul/editorjstohtml
 ```
 
 # Usage

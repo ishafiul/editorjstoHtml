@@ -1,11 +1,11 @@
 {
-  "name": "@ishaf/editorJsToHtml",
+  "name": "@ishafiul/editorjstohtml",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ishafiul/editorjstoHtml.git"
+    "url": "git+https://github.com/ishafiul/editorjstoHtml.git"
   },
-  "version": "0.0.2",
-  "description": "A component library for getting people started with easy to re-use components for everyday projects.",
+  "version": "0.0.1",
+  "description": "Simple lib to convert your editorjs blocks to html",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "files": [
@@ -21,5 +21,21 @@
   "devDependencies": {
     "@types/node": "^18.11.18",
     "typescript": "^4.9.4"
+  },
+  "types": "./dist/cjs/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/ishafiul/editorjstoHtml/issues"
+  },
+  "homepage": "https://github.com/ishafiul/editorjstoHtml#readme",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "js-tokens": "^4.0.0",
+    "loose-envify": "^1.4.0",
+    "object-assign": "^4.1.1",
+    "react-dom": "^17.0.2",
+    "react": "^17.0.2",
+    "scheduler": "^0.20.2"
   }
 }
