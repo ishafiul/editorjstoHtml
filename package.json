@@ -4,19 +4,27 @@
     "type": "git",
     "url": "git+https://github.com/ishafiul/editorjstoHtml.git"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple lib to convert your editorjs blocks to html",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "files": [
     "dist"
   ],
+  "keywords": [
+    "editorjs",
+    "parser",
+    "html",
+    "clean-data",
+    "json",
+    "parsing"
+  ],
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
   },
-  "author": "The Nerdy Canuck",
+  "author": "Shafiul Islam",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.11.18",
