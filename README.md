@@ -1,13 +1,10 @@
 # Editorjs To HTML
 
-editorjs-parser is a NPM package for parsing the output object of [EditorJs](https://github.com/codex-team/editor.js) to HTML.
+EditorJsToHtml is a NPM package for parsing the output object of [EditorJs](https://github.com/codex-team/editor.js) to HTML.
+
+Its a rework on top of [editorjs-parser](https://github.com/miadabdi/editorjs-parser) with typescript support and extra editorjs plugin support
 
 # Installation
-
-### CDN
-
-- https://cdn.jsdelivr.net/npm/editorjs-parser@1/build/Parser.node.min.js (Node only)
-- https://cdn.jsdelivr.net/npm/editorjs-parser@1/build/Parser.browser.min.js (Browser only)
 
 ### NPM
 
@@ -19,17 +16,12 @@ npm install --save editorjs-parser
 
 # Usage
 
-To use the package in browser, import Browser verison through CDN to your HTML file and just call `edjsParser` class:
-
-```javascript
-const parser = new edjsParser(config, customParsers, embedMarkup);
-```
 
 To import the package in Node and Front-end code:
 
 ```javascript
-const edjsParser = require("editorjs-parser");
-const parser = new edjsParser(config, customParsers, embedMarkup);
+const EditorJsToHtml = require("@ishaf/editorJsToHtml");
+const parser = new EditorJsToHtml(config, customParsers, embedMarkup);
 ```
 
 **NOTE:** **Parameters are optional**. If you want to only pass the second parameter, set the first parameter to `undefined`.
@@ -60,11 +52,13 @@ const markup = parser.parseBlock(block);
 - Code
 - Quote
 - List
+- Nested List
+- Checklist
 - Embed
-- Image
-- Simple-image
+- Image (with NextImage support for nextjs)
+- Simple-image (with NextImage support)
 
-**NOTE:** It is pointless to use both `image` and `simple-image` block types in the same editor insatnce, but this parser supports both of them and you can use any of them that fulfills your needs.
+**NOTE:** It is pointless to use both `image` and `simple-image` or `List` and `Nested List` block types in the same editor insatnce, but this parser supports them and you can use any of them that fulfills your needs.
 
 ## Custom or overriding parser methods
 
