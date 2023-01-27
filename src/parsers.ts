@@ -30,11 +30,16 @@ export default {
                 headtds +=`<th>${head}</th>`
             })
             const thead = `<thead>${headtds}</thead>`
-            let bodytds =''
+            let bodytrs =''
+
             for (let i = 1;i<data.content.length;i++){
-                bodytds += `<td>${data.content[0]}</td>`
+                let bodytds = ''
+                data.content[i].forEach((col:string)=>{
+                    bodytds +=`<td>${col}</td>`
+                })
+                bodytrs +=`<tr>${bodytds}</tr>`
             }
-            const tbody = `<tbody>${bodytds}</tbody>`
+            const tbody = `<tbody>${bodytrs}</tbody>`
             return `<table>${thead}${tbody}</table>`;
         }else {
             const rows = data.content.map((row:any) => {
