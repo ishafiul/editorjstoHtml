@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/ishafiul/editorjstoHtml.git"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple lib to convert your editorjs blocks to html",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -37,5 +37,10 @@
   "homepage": "https://github.com/ishafiul/editorjstoHtml#readme",
   "directories": {
     "test": "test"
+  },
+  "dependencies": {
+    "highlight.js": "^11.7.0",
+    "image-size": "^1.0.2",
+    "request-image-size": "^2.2.0"
   }
 }

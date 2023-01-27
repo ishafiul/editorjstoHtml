@@ -1,223 +1,35 @@
 import express from "express";
 import {createServer} from "http";
 import EditorJsToHtml from "../dist/cjs";
-
 const app = express()
 const ejs = new EditorJsToHtml();
 const server = createServer(app);
 const port = process.env.PORT || 3000;
 app.get('/', (req, res) => res.sendFile('index.html', {root: app.get('views')}))
-app.get('/perse', (req, res) => {
+app.get('/perse', async (req, res) => {
 
     res.send(ejs.parse({
-        "time": 1601898039654,
-        "blocks": [{
-            "type": "image",
-            "data": {
-                "url": "https://www.tesla.com/tesla_theme/assets/img/_vehicle_redesign/roadster_and_semi/roadster/hero.jpg",
-                "caption": "Roadster // tesla.com",
-                "withBorder": false,
-                "withBackground": false,
-                "stretched": true
-            }
-        },
+        "time": 1674775249942,
+        "blocks": [
             {
-                "type": "paragraph",
-                "data": {
-                    "text": "Hello There, it is a test post related to <a href=\"https://google.com\">Google</a> which is the <b>biggest</b> search engine!"
-                }
-            },
-            {
-                "type": "header",
-                "data": {
-                    "text": "Google's attributes",
-                    "level": 2
-                }
-            },
-            {
-                "type": "list",
-                "data": {
-                    "style": "ordered",
-                    "items": [
-                        "Search Engine",
-                        "Google fonts",
-                        "Google images",
-                        "Google maps"
-                    ]
-                }
-            },
-            {
-                "type": "quote",
-                "data": {
-                    "text": "If your access to health care involves your leaving work and driving somewhere and parking and waiting for a long time, that's not going to promote healthiness.",
-                    "caption": "Larry Page",
-                    "alignment": "left"
-                }
-            },
-            {
-                "type": "table",
-                "data": {
-                    "content": [
-                        ["", "Me", "Me"],
-                        ["You", "Ugly", "Big"]
-                    ]
-                }
-            },
-            {
+                "id": "5dHkK2vsft",
                 "type": "code",
                 "data": {
-                    "code": "const path = require(\"path\");\nconst cookieParser = require(\"cookie-parser\");\nconst rateLimiter = require(\"express-rate-limit\");\nconst helmet = require(\"helmet\");\nconst mongoSanitize = require(\"express-mongo-sanitize\");\nconst xss = require(\"xss-clean\");\nconst hpp = require(\"hpp\");\nconst express = require(\"express\");"
-                }
-            },
-            {
-                "type": "embed",
-                "data": {
-                    "service": "youtube",
-                    "source": "https://www.youtube.com/watch?v=1z6sLQJHbP0",
-                    "embed": "https://www.youtube.com/embed/1z6sLQJHbP0",
-                    "width": 580,
-                    "height": 320,
-                    "caption": "This is a Youtube video!<br>"
-                }
-            },
-            {
-                "type": "embed",
-                "data": {
-                    "service": "twitter",
-                    "source": "https://twitter.com/elonmusk/status/1310001082278371328",
-                    "embed": "https://twitframe.com/show?url=https://twitter.com/elonmusk/status/1310001082278371328",
-                    "width": 600,
-                    "height": 300,
-                    "caption": "This is a twitter embed!<br>"
-                }
-            },
-            {
-                "type": "warning",
-                "data": {
-                    "title": "Watch Out!!!<br>",
-                    "message": "This is a test WARNING!<br>"
-                }
-            },
-            {
-                "type": "delimiter"
-            },
-
-            {
-                "type": "checklist",
-                "data": {
-                    "items": [{
-                        "text": "I'm a Developer",
-                        "checked": true
-                    },
-                        {
-                            "text": "I'm an introvert",
-                            "checked": true
-                        },
-                        {
-                            "text": "I love science!",
-                            "checked": false
-                        }
-                    ]
-                }
-            },
-            {
-                "type": "embed",
-                "data": {
-                    "service": "codepen",
-                    "source": "https://codepen.io/traversbray/pen/NWNZwPq",
-                    "embed": "https://codepen.io/traversbray/embed/NWNZwPq?height=300&amp;theme-id=0&amp;default-tab=css,result&amp;embed-version=2",
-                    "width": 600,
-                    "height": 300,
-                    "caption": ""
-                }
-            },
-            {
-                "type": "code",
-                "data": {
-                    "code": "<div id='app'><div class='btn-holder'><button @click.prevent='openSideElement()'>Open side element</button></div><transition name='fade'><div v-if='open' class='overlay'  @click.prevent='close()'></div></transition><div class='side-element' :class='open ? 'show-element' : '''><span class='close-btn' @click.prevent='close()'>x</span><div class='content'><h2>Hi!</h2><p>I'm the element coming from the right of the browser.</p><p>Click the close icon or anywhere on the overlay to close me.</p></div></div></div>"
-                }
-            },
-            {
-                "type": "embed",
-                "data": {
-                    "service": "twitter",
-                    "source": "https://twitter.com/SpaceX/status/1310962850601545728",
-                    "embed": "https://twitframe.com/show?url=https://twitter.com/SpaceX/status/1310962850601545728",
-                    "width": 600,
-                    "height": 300,
-                    "caption": ""
-                }
-            },
-            {
-                "type": "embed",
-                "data": {
-                    "service": "instagram",
-                    "source": "https://www.instagram.com/p/CFuMV9MhwlL",
-                    "embed": "https://www.instagram.com/p/CFuMV9MhwlL/embed",
-                    "width": 400,
-                    "height": 505,
-                    "caption": ""
+                    "code": ".ce-code__textarea {\n    min-height: 200px;\n    font-family: Menlo, Monaco, Consolas, Courier New, monospace;\n    color: #41314e;\n    line-height: 1.6em;\n    font-size: 12px;\n    background: #f8f7fa;\n    border: 1px solid #f1f1f4;\n    box-shadow: none;\n    white-space: pre;\n    word-wrap: normal;\n    overflow-x: auto;\n    resize: vertical;\n}"
                 }
             },
             {
                 "type": "image",
                 "data": {
-                    "file": {
-                        "url": "http://127.0.0.1:5000/img/Wallpaper-Mix-2017.04---24-5f5f73c9754360259669284a-1601846783120.jpg",
-                        "fileName": "Wallpaper-Mix-2017.04---24-5f5f73c9754360259669284a-1601846783120.jpg"
-                    },
-                    "caption": "dfvsdfvdsvdfvs",
+                    "url": "https://www.tesla.com/tesla_theme/assets/img/_vehicle_redesign/roadster_and_semi/roadster/hero.jpg",
+                    "caption": "Roadster // tesla.com",
                     "withBorder": false,
-                    "stretched": true,
-                    "withBackground": false
+                    "withBackground": false,
+                    "stretched": true
                 }
             },
-            {
-                "type": "raw",
-                "data": {
-                    "html": "<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/Vd1xADQ\"  ><a href=\"//imgur.com/a/Vd1xADQ\">Dark arts and crafts!</a></blockquote><script async src=\"//s.imgur.com/min/embed.js\" charset=\"utf-8\"></script>"
-                }
-            },
-            {
-                "id": "Gu3CLL_09I",
-                "type": "list",
-                "data": {
-                    "style": "unordered",
-                    "items": [
-                        {
-                            "content": "dfsdfsd",
-                            "items": [
-                                {
-                                    "content": "gdfg",
-                                    "items": [
-                                        {
-                                            "content": "cfdf",
-                                            "items": [
-                                                {
-                                                    "content": "fdgdfgf",
-                                                    "items": [
-                                                        {
-                                                            "content": "qwdfg",
-                                                            "items": [
-                                                                {
-                                                                    "content": "dfgdfg",
-                                                                    "items": []
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
         ],
-        "version": "2.18.0"
+        "version": "2.26.4"
     }))
 })
 server.listen(port, () => console.log(`Listening on port ${port}`))

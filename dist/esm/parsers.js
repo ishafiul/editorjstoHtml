@@ -1,4 +1,15 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { listBuilder, sanitizeHtml } from "./utitlities";
+const hljs = require('highlight.js/lib/common');
+const requestImageSize = require('request-image-size');
 export default {
     paragraph: function (data, config) {
         return `<p class="${config.paragraph.pClass}"> ${data.text} </p>`;
@@ -24,33 +35,61 @@ export default {
         return `<table><tbody>${rows.join("")}</tbody></table>`;
     },
     image: function (data, config) {
-        const imageConditions = `${data.stretched ? "img-fullwidth" : ""} ${data.withBorder ? "img-border" : ""} ${data.withBackground ? "img-bg" : ""}`;
-        const imgClass = config.image.imgClass || "";
-        let imageSrc;
-        if (data.url) {
-            // simple-image was used and the image probably is not uploaded to this server
-            // therefore, we use the absolute path provided in data.url
-            // so, config.image.path property is useless in this case!
-            imageSrc = data.url;
-        }
-        else if (config.image.path === "absolute") {
-            imageSrc = data.file.url;
-        }
-        else {
-            imageSrc = config.image.path.replace(/<(.+)>/, (match, p1) => data.file[p1]);
-        }
-        if (config.image.use === "img") {
-            return `<img class="${imageConditions} ${imgClass}" src="${imageSrc}" alt="${data.caption}">`;
-        }
-        else if (config.image.use === "figure") {
-            const figureClass = config.image.figureClass || "";
-            const figCapClass = config.image.figCapClass || "";
-            return `<figure class="${figureClass}"><img class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>`;
-        }
+        return __awaiter(this, void 0, void 0, function* () {
+            const imageConditions = `${data.stretched ? "img-fullwidth" : ""} ${data.withBorder ? "img-border" : ""} ${data.withBackground ? "img-bg" : ""}`;
+            const imgClass = config.image.imgClass || "";
+            let imageSrc;
+            if (data.url) {
+                // simple-image was used and the image probably is not uploaded to this server
+                // therefore, we use the absolute path provided in data.url
+                // so, config.image.path property is useless in this case!
+                imageSrc = data.url;
+            }
+            else if (config.image.path === "absolute") {
+                imageSrc = data.file.url;
+            }
+            else {
+                imageSrc = config.image.path.replace(/<(.+)>/, (match, p1) => data.file[p1]);
+            }
+            let width = 500;
+            let height = 0;
+            yield requestImageSize('https://nodejs.org/images/logo.png')
+                .then((size) => {
+                if (size.width > width) {
+                    const ratio = size.height / size.width;
+                    height = width * ratio;
+                }
+                else {
+                    width = size.width;
+                    height = size.height;
+                }
+            });
+            if (config.image.use === "img") {
+                return `<img class="${imageConditions} ${imgClass}"  width=${width}
+            height=${height} src="${imageSrc}" alt="${data.caption}" `;
+            }
+            else if (config.image.use === "figure") {
+                const figureClass = config.image.figureClass || "";
+                const figCapClass = config.image.figCapClass || "";
+                return `<figure class="${figureClass}"><img  width=${width}
+            height=${height} class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>`;
+            }
+            else if (config.image.use === "nextImage") {
+                return `<Image
+            src=${imageSrc}
+            alt=${data.caption ? data.caption : ''}
+            width=${width}
+            height=${height}
+            blurDataURL=${imageSrc}
+            placeholder="blur"
+        />`;
+            }
+        });
     },
     code: function (data, config) {
         const markup = sanitizeHtml(data.code);
-        return `<pre><code class="${config.code.codeBlockClass}">${markup}</code></pre>`;
+        const code = hljs.highlightAuto(markup);
+        return `<pre><code>${code.value.toString()}</code></pre>`;
     },
     raw: function (data) {
         return data.html;

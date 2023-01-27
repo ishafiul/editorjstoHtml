@@ -19,23 +19,7 @@ export default class EditorJsToHtml {
             }
             return markup;
         });
-        return html.join(`<style>
-.cdx-marker {
-  background: rgba(245,235,111,0.29);
-  padding: 3px 0;
-}
-.inline-code {
-  background: rgba(250, 239, 240, 0.78);
-  color: #b44437;
-  padding: 3px 4px;
-  border-radius: 5px;
-  margin: 0 1px;
-  font-family: inherit;
-  font-size: 0.86em;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
-</style>`);
+        return html.join(``);
     }
 
     parseBlock(block:any) {

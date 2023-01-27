@@ -4,7 +4,7 @@ declare const _default: {
     list: (data: any) => string;
     quote: (data: any, config: any) => string;
     table: (data: any) => string;
-    image: (data: any, config: any) => string | undefined;
+    image: (data: any, config: any) => Promise<string | undefined>;
     code: (data: any, config: any) => string;
     raw: (data: any) => any;
     delimiter: (data: any) => string;
