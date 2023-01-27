@@ -49,14 +49,14 @@ const markup = parser.parseBlock(block);
 - Table
 - Raw
 - Delimiter
-- Code
+- Code with highlight.js
 - Quote
 - List
 - Nested List
 - Checklist
 - Embed
-- Image (with NextImage support for nextjs)
-- Simple-image (with NextImage support)
+- Image 
+- Simple-image
 
 **NOTE:** It is pointless to use both `image` and `simple-image` or `List` and `Nested List` block types in the same editor insatnce, but this parser supports them and you can use any of them that fulfills your needs.
 

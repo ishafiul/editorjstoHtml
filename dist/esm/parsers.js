@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { listBuilder, sanitizeHtml } from "./utitlities";
 const hljs = require('highlight.js/lib/common');
-const requestImageSize = require('request-image-size');
 export default {
     paragraph: function (data, config) {
         return `<p class="${config.paragraph.pClass}"> ${data.text} </p>`;
@@ -29,10 +28,25 @@ export default {
         return `<blockquote ${alignment}><p>${data.text}</p><cite>${data.caption}</cite></blockquote>`;
     },
     table: function (data) {
-        const rows = data.content.map((row) => {
-            return `<tr>${row.reduce((acc, cell) => acc + `<td>${cell}</td>`, "")}</tr>`;
-        });
-        return `<table><tbody>${rows.join("")}</tbody></table>`;
+        if (data.withHeadings) {
+            let headtds = '';
+            data.content[0].forEach((head) => {
+                headtds += `<th>${head}</th>`;
+            });
+            const thead = `<thead>${headtds}</thead>`;
+            let bodytds = '';
+            for (let i = 1; i < data.content.length; i++) {
+                bodytds += `<td>${data.content[0]}</td>`;
+            }
+            const tbody = `<tbody>${bodytds}</tbody>`;
+            return `<table>${thead}${tbody}</table>`;
+        }
+        else {
+            const rows = data.content.map((row) => {
+                return `<tr>${row.reduce((acc, cell) => acc + `<td>${cell}</td>`, "")}</tr>`;
+            });
+            return `<table><tbody>${rows.join("")}</tbody></table>`;
+        }
     },
     image: function (data, config) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -51,38 +65,13 @@ export default {
             else {
                 imageSrc = config.image.path.replace(/<(.+)>/, (match, p1) => data.file[p1]);
             }
-            let width = 500;
-            let height = 0;
-            yield requestImageSize('https://nodejs.org/images/logo.png')
-                .then((size) => {
-                if (size.width > width) {
-                    const ratio = size.height / size.width;
-                    height = width * ratio;
-                }
-                else {
-                    width = size.width;
-                    height = size.height;
-                }
-            });
             if (config.image.use === "img") {
-                return `<img class="${imageConditions} ${imgClass}"  width=${width}
-            height=${height} src="${imageSrc}" alt="${data.caption}" `;
+                return `<img class="${imageConditions} ${imgClass}" src="${imageSrc}" alt="${data.caption}" `;
             }
             else if (config.image.use === "figure") {
                 const figureClass = config.image.figureClass || "";
                 const figCapClass = config.image.figCapClass || "";
-                return `<figure class="${figureClass}"><img  width=${width}
-            height=${height} class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>`;
-            }
-            else if (config.image.use === "nextImage") {
-                return `<Image
-            src=${imageSrc}
-            alt=${data.caption ? data.caption : ''}
-            width=${width}
-            height=${height}
-            blurDataURL=${imageSrc}
-            placeholder="blur"
-        />`;
+                return `<figure class="${figureClass}"><img  class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>`;
             }
         });
     },

@@ -23,13 +23,28 @@ export default {
     },
 
     table: function(data:any) {
-        const rows = data.content.map((row:any) => {
-            return `<tr>${row.reduce(
-                (acc:any, cell:any) => acc + `<td>${cell}</td>`,
-                ""
-            )}</tr>`;
-        });
-        return `<table><tbody>${rows.join("")}</tbody></table>`;
+        if(data.withHeadings){
+            let headtds = ''
+
+            data.content[0].forEach((head:string)=>{
+                headtds +=`<th>${head}</th>`
+            })
+            const thead = `<thead>${headtds}</thead>`
+            let bodytds =''
+            for (let i = 1;i<data.content.length;i++){
+                bodytds += `<td>${data.content[0]}</td>`
+            }
+            const tbody = `<tbody>${bodytds}</tbody>`
+            return `<table>${thead}${tbody}</table>`;
+        }else {
+            const rows = data.content.map((row:any) => {
+                return `<tr>${row.reduce(
+                    (acc:any, cell:any) => acc + `<td>${cell}</td>`,
+                    ""
+                )}</tr>`;
+            });
+            return `<table><tbody>${rows.join("")}</tbody></table>`;
+        }
     },
     image: async function (data:any, config:any) {
         const imageConditions = `${data.stretched ? "img-fullwidth" : ""} ${
