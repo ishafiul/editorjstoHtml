@@ -51,7 +51,7 @@ export default {
             return `<table><tbody>${rows.join("")}</tbody></table>`;
         }
     },
-    image: async function (data:any, config:any) {
+    image: function (data:any, config:any) {
         const imageConditions = `${data.stretched ? "img-fullwidth" : ""} ${
             data.withBorder ? "img-border" : ""
         } ${data.withBackground ? "img-bg" : ""}`;
@@ -73,12 +73,12 @@ export default {
         }
 
         if (config.image.use === "img") {
-            return `<img class="${imageConditions} ${imgClass}" src="${imageSrc}" alt="${data.caption}" `;
+            return `<img class="${imageConditions} ${imgClass}" src="${imageSrc}" alt="${data.caption}">`;
         } else if (config.image.use === "figure") {
             const figureClass = config.image.figureClass || "";
             const figCapClass = config.image.figCapClass || "";
 
-            return `<figure class="${figureClass}"><img  class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>`;
+            return `<figure class="${figureClass}"><img class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>`;
         }
     },
     code: function (data:any, config:any) {
