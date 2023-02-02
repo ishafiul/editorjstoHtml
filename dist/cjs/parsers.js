@@ -107,6 +107,21 @@ exports.default = {
             `;
         });
         return html;
+    },
+    linkTool: function (data, config) {
+        return `
+        <a href="${data.link}" target="_blank">
+        <div>
+        <div>
+        <p><b>${data.meta.title}</b></p>
+        <p>${data.meta.description}</p>
+</div>
+<div>
+<img src="${data.meta.image.url}" width="100" height="100"  alt="">
+</div>
+</div>
+</a>
+        `;
     }
 };
 //# sourceMappingURL=parsers.js.map

@@ -123,5 +123,20 @@ export default {
             `
         })
         return html
+    },
+    linkTool:function (data:any, config:any){
+        return `
+        <a href="${data.link}" target="_blank">
+        <div class="linkTool">
+        <div>
+        <p><b>${data.meta.title}</b></p>
+        <p>${data.meta.description}</p>
+</div>
+<div>
+<img src="${data.meta.image.url}" width="100" height="100"  alt="">
+</div>
+</div>
+</a>
+        `
     }
 };

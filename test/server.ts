@@ -9,20 +9,24 @@ app.get('/', (req, res) => res.sendFile('index.html', {root: app.get('views')}))
 app.get('/perse', async (req, res) => {
 
     res.send(ejs.parse({
-        "time": 1674852520718,
+        "time": 1675374584958,
         "blocks": [
             {
-                "type": "image",
+                "id": "MIS9TUIrHa",
+                "type": "linkTool",
                 "data": {
-                    "url": "https://www.tesla.com/tesla_theme/assets/img/_vehicle_redesign/roadster_and_semi/roadster/hero.jpg",
-                    "caption": "Roadster // tesla.com",
-                    "withBorder": false,
-                    "withBackground": false,
-                    "stretched": true
+                    "link": "https://www.mindwords.info/post/is-passwordless-authentication-the-future-do-you-really-need-2-factor-authentication",
+                    "meta": {
+                        "title": "Is Passwordless authentication the future ? Do you really need 2 factor authentication?",
+                        "description": "Passwordless authentication is an authentication system where you don't have to verify your identity with a general username or password. Instead, it utilizes email links or OTP, OTP sent via SMS, or biometrics such as...",
+                        "image": {
+                            "url": "https://www.mindwords.info/api/og?image=https://api.mindwords.xyz/files/uploads/untitled-1-1675342312254.jpg&title=Is Passwordless authentication the future ? Do you really need 2 factor authentication?"
+                        }
+                    }
                 }
-            },
+            }
         ],
-        "version": "2.26.4"
+        "version": "2.26.5"
     }))
 })
 server.listen(port, () => console.log(`Listening on port ${port}`))
