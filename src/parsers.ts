@@ -127,7 +127,7 @@ export default {
     linkTool:function (data:any, config:any){
         return `
         <a href="${data.link}" target="_blank">
-        <div class="linkTool">
+        <div id="linkTool">
         <div>
         <p><b>${data.meta.title}</b></p>
         <p>${data.meta.description}</p>
