@@ -10,5 +10,6 @@ declare const _default: {
     delimiter: (data: any) => string;
     embed: (data: any, config: any) => any;
     checklist: (data: any, config: any) => string;
+    linkTool: (data: any, config: any) => string;
 };
 export default _default;

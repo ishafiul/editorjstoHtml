@@ -57,6 +57,7 @@ const markup = parser.parseBlock(block);
 - Embed
 - Image 
 - Simple-image
+- linkTool
 
 **NOTE:** It is pointless to use both `image` and `simple-image` or `List` and `Nested List` block types in the same editor insatnce, but this parser supports them and you can use any of them that fulfills your needs.
 
